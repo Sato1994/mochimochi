@@ -20,22 +20,12 @@ func main() {
 	migrateSchema(db)
 
 	r := gin.Default()
-
-	initRouter(r, db)
+	route.InitRouter(r, db)
 
 	r.Run(":8080")
 }
 
 func migrateSchema(db *gorm.DB) {
 	db.AutoMigrate(&model.User{})
-}
-
-func initRouter(
-	r *gin.Engine,
-	db *gorm.DB,
-) {
-	userRoute := r.Group("/user/:id")
-	userRoute.GET("/", func(c *gin.Context) {
-		route.GetUser(c, db)
-	})
+	db.AutoMigrate(&model.ExternalWebService{})
 }

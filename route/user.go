@@ -9,9 +9,20 @@ import (
 )
 
 func GetUser(c *gin.Context, db *gorm.DB) {
-	var users model.User
-	findUser := db.Order("name").Find(&users)
+	user := model.User{}
+	id := c.Param("id")
+	db.First(&user, id)
+	c.JSON(http.StatusOK, user)
+}
 
-	c.JSON(http.StatusOK, findUser)
+func DeleteUser(c *gin.Context, db *gorm.DB) {
+	id := c.Param("id")
+	db.Delete(&model.User{}, id)
+	c.JSON(http.StatusOK, gin.H{"message": "User deleted successfully"})
+}
 
+func GetUsers(c *gin.Context, db *gorm.DB) {
+	users := []model.User{}
+	db.Find(&users)
+	c.JSON(http.StatusOK, users)
 }
