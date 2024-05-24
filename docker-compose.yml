@@ -2,16 +2,25 @@
 version: '3.8'
 services:
   server:
-    build: .
+    build: ./server
     ports:
       - "8080:8080"
     tty: true
     stdin_open: true
     volumes:
-      - .:/app
+      - ./server:/app
     command: air -c .air.toml
     depends_on:
       - db
+  client:
+    build: ./client
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./client:/app
+    command: npm run dev
   db:
     image: postgres:16.3
     ports:
