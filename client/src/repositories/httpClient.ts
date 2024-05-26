@@ -3,7 +3,6 @@ import axios from "axios";
 export class HttpClient {
   private baseUrl: string;
 
-
   constructor() {
     this.baseUrl = "https://jsonplaceholder.typicode.com";
   }
@@ -11,9 +10,9 @@ export class HttpClient {
     try {
       const response = await axios(`${this.baseUrl}${path}`);
       return response.data;
-    }catch(e) {
+    } catch (e) {
       console.log(e);
-      return e
+      return e;
     }
   }
 }

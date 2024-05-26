@@ -1,5 +1,3 @@
-"use client";
-import { HttpClient } from "@/app/repositories/httpClient";
 import { Button as _Button } from "@chakra-ui/react";
 
 import React from "react";
@@ -9,14 +7,10 @@ type Props = {
   buttonText: string;
 };
 
-
-const Button = (
-  { handleClick, buttonText }: Props
-) => {
-  
+const Button = ({ handleClick, buttonText }: Props) => {
   return (
     <_Button colorScheme="blue" size="md" onClick={handleClick}>
-      { buttonText }
+      {buttonText}
     </_Button>
   );
 };
