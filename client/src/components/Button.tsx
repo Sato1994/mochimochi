@@ -1,16 +1,10 @@
-import { Button as _Button } from "@chakra-ui/react";
-
 import React from "react";
+import { Button as _Button, ButtonProps } from "@chakra-ui/react";
 
-type Props = {
-  handleClick: () => Promise<void>;
-  buttonText: string;
-};
-
-const Button = ({ handleClick, buttonText }: Props) => {
+const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (props) => {
   return (
-    <_Button colorScheme="blue" size="md" onClick={handleClick}>
-      {buttonText}
+    <_Button colorScheme="blue" size="md" {...props}>
+      {props.children}
     </_Button>
   );
 };
