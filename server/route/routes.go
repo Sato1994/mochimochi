@@ -10,28 +10,34 @@ func InitRouter(
 	db *gorm.DB,
 ) {
 	userRoute := r.Group("/user")
-	usersRoute := r.Group("/users")
-	externalWebServiceRoute := r.Group("/external-web-service")
-	externalWebServicesRoute := r.Group("/external-web-services")
-
 	userRoute.GET("/:id", func(c *gin.Context) {
 		GetUser(c, db)
 	})
 	userRoute.DELETE("/:id", func(c *gin.Context) {
 		DeleteUser(c, db)
 	})
+
+	usersRoute := r.Group("/users")
 	usersRoute.GET("/", func(c *gin.Context) {
 		GetUsers(c, db)
 	})
 
+	externalWebServiceRoute := r.Group("/external-web-service")
 	externalWebServiceRoute.GET("/:id", func(c *gin.Context) {
 		GetExternalWebService(c, db)
 	})
 	externalWebServiceRoute.POST("/", func(c *gin.Context) {
 		CreateExternalWebService(c, db)
 	})
+
+	externalWebServicesRoute := r.Group("/external-web-services")
 	externalWebServicesRoute.GET("/", func(c *gin.Context) {
 		GetExternalWebServices(c, db)
+	})
+
+	autoActionRoute := r.Group("/auto-action")
+	autoActionRoute.POST("/", func(c *gin.Context) {
+		GetHtmlFromPath(c)
 	})
 
 }

@@ -1,11 +1,14 @@
+"use client";
+
 import Button from "@/components/Button";
 import { Box, Container, Image } from "@chakra-ui/react";
 import { useState } from "react";
 
-export default function testActions() {
+export default function getStaticProps() {
   const [screenShotPath, setScreenShotPath] = useState<string>("otameshi.jpg");
 
   async function testAction() {
+    const nowTimestamp = new Date().getTime();
     await autoBrowserTest();
   }
 
@@ -13,15 +16,17 @@ export default function testActions() {
     // https://pptr.dev/
     // Puppeteerを使用する
 
-    const browser = await  puppeteer.launch({ headless: true });
+    // const puppeteer = require("puppeteer");
 
-    const page = await browser.newPage();
+    // const browser = puppeteer.launch({ headless: true });
+
+    // const page = await browser.newPage();
     // await page.goto("https://github.com/Sato1994");
     const nowTimestamp = new Date().getTime();
 
-    const r = await page.screenshot({ path: `${nowTimestamp}.png` });
-    console.log({r});
-    await browser.close();
+    // const r = await page.screenshot({ path: `${nowTimestamp}.png` });
+    // console.log({ r });
+    // await browser.close();
     setScreenShotPath(`${nowTimestamp}.png`);
   }
 
