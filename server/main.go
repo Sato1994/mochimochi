@@ -26,6 +26,10 @@ func main() {
 }
 
 func migrateSchema(db *gorm.DB) {
+
 	db.AutoMigrate(&model.User{})
+	db.AutoMigrate(&model.Action{})
+	db.AutoMigrate(&model.AutoAction{})
 	db.AutoMigrate(&model.ExternalWebService{})
+
 }

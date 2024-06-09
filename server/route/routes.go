@@ -35,9 +35,20 @@ func InitRouter(
 		GetExternalWebServices(c, db)
 	})
 
+	autoActionsRoute := r.Group("/auto-actions")
+	autoActionsRoute.GET("/", func(c *gin.Context) {
+		GetAutoActions(c, db)
+	})
+
 	autoActionRoute := r.Group("/auto-action")
-	autoActionRoute.POST("/", func(c *gin.Context) {
+	autoActionRoute.GET("/:url", func(c *gin.Context) {
 		GetHtmlFromPath(c)
+	})
+	autoActionRoute.DELETE("/", func(c *gin.Context) {
+		DeleteHtmlFromPath(c, db)
+	})
+	autoActionRoute.POST("/", func(c *gin.Context) {
+		CreateAutoAction(c, db)
 	})
 
 }

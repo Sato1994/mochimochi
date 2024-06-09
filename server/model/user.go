@@ -1,12 +1,8 @@
 package model
 
-type User struct {
-	ID   uint   `json:"id" gorm:"primary_key"`
-	Name string `json:"name"`
-}
+import "gorm.io/gorm"
 
-type ExternalWebService struct {
-	ID   uint   `json:"id" gorm:"primary_key"`
-	Name string `json:"name" gorm:"not null"`
-	Url  string `json:"url" gorm:"not null"`
+type User struct {
+	gorm.Model
+	Name string `json:"name"`
 }
